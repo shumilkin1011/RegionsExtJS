@@ -36,6 +36,7 @@ Ext.define('extJSApp.view.main.List', {
             draggable: true,
         },
         {
+            dataIndex: 'composite',
             text: 'Объед. информация',
             flex: 7,
             renderer: function(value, record) {

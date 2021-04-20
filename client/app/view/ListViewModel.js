@@ -10,7 +10,6 @@ Ext.define('extJSApp.view.ListViewModel', {
     stores: {
         regionStoreMain: {
             extend: 'Ext.data.Store',
-            alias: 'store.Region',
 
             model: 'extJSApp.model.Region',
             proxy: {
@@ -21,6 +20,11 @@ Ext.define('extJSApp.view.ListViewModel', {
                     type:'json',
                     rootProperty:'content',
                     totalProperty: 'totalElements'
+                }
+            },
+            listeners: {
+                beforeSort: function (store, sorters, eOpts) {
+                    //debugger;
                 }
             },
             remoteSort: true,

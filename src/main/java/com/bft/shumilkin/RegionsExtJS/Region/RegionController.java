@@ -33,15 +33,15 @@ public class RegionController {
         String searchFor = null;
 
 
-        if (params.page != 0) page = params.page;
-        if (params.limit != 0) size = params.limit;
-        if(params.countryId != null) countryId = params.countryId;
-        if(params.searchFor != null) searchFor = params.searchFor;
+        if (params.getPage() != 0) page = params.getPage();
+        if (params.getLimit() != 0) size = params.getLimit();
+        if(params.getCountryId() != null) countryId = params.getCountryId();
+        if(params.getSearchFor() != null) searchFor = params.getSearchFor();
 
         List<Order> orders = new ArrayList<>();
         Pageable pageable;
-        if (params.sort != null && params.dir != null) {
-            orders.add(new Order(Sort.Direction.fromString(params.dir), params.sort));
+        if (params.getSort() != null && params.getDir() != null) {
+            orders.add(new Order(Sort.Direction.fromString(params.getDir()), params.getSort()));
             pageable = PageRequest.of(page - 1, size, Sort.by(orders.get(0)));
         }
         else {

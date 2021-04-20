@@ -13,7 +13,7 @@ Ext.define('extJSApp.view.countries.Boxes', {
 
     items: [
         {
-            xtype: 'combobox',
+            xtype: 'tagfield',
             fieldLabel: 'Choose country',
             margin: '5 0 0 0',
             minChars: 3,

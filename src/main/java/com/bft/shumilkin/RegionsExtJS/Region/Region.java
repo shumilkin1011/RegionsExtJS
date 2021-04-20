@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.Data;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,7 +28,8 @@ public class Region{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
     Country country;
-
+    @Formula(value = "id || ' ' || region_name")
+    String composite;
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "region")
     List<City> cities;

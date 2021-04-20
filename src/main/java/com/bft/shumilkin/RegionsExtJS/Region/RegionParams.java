@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Data
 public class RegionParams {
-    String searchFor;
-    Long countryId;
-    int limit;
-    int page;
-    String sort;
-    String dir;
+    private String searchFor;
+    private Long countryId;
+    private int limit = 10;
+    private int page = 1;
+    private String sort;
+    private String dir;
 
     public RegionParams() {
 
