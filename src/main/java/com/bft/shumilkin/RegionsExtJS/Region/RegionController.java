@@ -3,13 +3,12 @@ package com.bft.shumilkin.RegionsExtJS.Region;
 import com.bft.shumilkin.RegionsExtJS.City.City;
 import com.bft.shumilkin.RegionsExtJS.Country.Country;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
+import org.springframework.data.domain.Sort.*;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -27,22 +26,35 @@ public class RegionController {
     }
 
     @GetMapping
-    public Page<Region> getAllRegions(@RequestParam(name = "searchFor", required = false) String searchFor,
-                                      @RequestParam(name = "countryId", required = false) Long countryId,
-                                      @RequestParam(name = "limit", defaultValue = "500") int size,
-                                      @RequestParam(name = "page", defaultValue = "1") int page,
-                                      @RequestParam(name = "sort", defaultValue = "regionName,desc") String[] sort) {
+    public Page<Region> getAllRegions(RegionParams params) {
+        int page = 1,
+                size = 10;
+        Long countryId = null;
+        String searchFor = null;
 
-        Pageable pageable = PageRequest.of(page - 1, size);
+
+        if (params.page != 0) page = params.page;
+        if (params.limit != 0) size = params.limit;
+        if(params.countryId != null) countryId = params.countryId;
+        if(params.searchFor != null) searchFor = params.searchFor;
+
+        List<Order> orders = new ArrayList<>();
+        Pageable pageable;
+        if (params.sort != null && params.dir != null) {
+            orders.add(new Order(Sort.Direction.fromString(params.dir), params.sort));
+            pageable = PageRequest.of(page - 1, size, Sort.by(orders.get(0)));
+        }
+        else {
+            pageable = PageRequest.of(page - 1, size);
+        }
+
         if (countryId != null && searchFor != null) {
             return service.getAllRegionsByCountryId(searchFor, countryId, pageable);
-            //return service.getAllRegionsSearch(searchFor);
         }
         if (countryId != null) {
             return service.getRegionsByCountryId(countryId, pageable);
         }
         return service.getAllRegionsPageable(pageable);
-
     }
 
 
@@ -69,7 +81,7 @@ public class RegionController {
             service.deleteRegionsAll();
             return "DELETED";
         } else {
-            return "Wrong param value: \'deleteAll\'";
+            return "Wrong param value: 'deleteAll'";
         }
 
     }

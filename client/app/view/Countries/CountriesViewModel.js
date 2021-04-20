@@ -21,7 +21,8 @@ Ext.define('extJSApp.view.Countries.CountriesViewModel', {
             autoLoad: false,
             listeners: {
                 beforeLoad: 'befRegionLoads'
-            }
+            },
+            pageSize: 100
         },
         cityStore: {
             type: 'City',
