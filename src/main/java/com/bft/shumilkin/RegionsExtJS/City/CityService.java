@@ -45,13 +45,12 @@ public class CityService {
         return repo.findByCityNameContainingIgnoreCase(searchFor);
     }
 
-    public List<City> getAllCitiesByRegionId(String searchFor, Long id) {
-        return repo.findByCityNameContainingIgnoreCaseAndRegion_Id(searchFor, id);
+    public List<City> getAllCitiesByRegionIds(String searchFor, Long[] ids) {
+        return repo.findByCityNameContainingIgnoreCaseAndRegion_IdIn(searchFor, ids);
     }
 
-    public List<City> getCitiesByRegionId(Long id) {
-        Region region = regionService.getRegionById(id);
-        return repo.findByRegion(region);
+    public List<City> getCitiesByRegionId(Long[] ids) {
+        return repo.findAllByRegion_IdIn(ids);
     }
 
     public void saveCities(List<City> cities) {

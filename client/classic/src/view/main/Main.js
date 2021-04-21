@@ -80,7 +80,7 @@ Ext.define('extJSApp.view.main.Main', {
         }]
     }, {
         title: 'Комбобоксики',
-        items: [ {
+        items: [{
             xtype: 'comboBoxesMain'
         }
         ]
@@ -99,5 +99,13 @@ Ext.define('extJSApp.view.main.Main', {
                 xtype: 'comboBoxesRUS'
             }
         ]
-    }]
+    },
+        {
+            title: 'Выбор нескольких регионов',
+            items: [
+                {
+                    xtype: 'tagFieldMain'
+                }
+            ]
+        }]
 });

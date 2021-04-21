@@ -20,15 +20,15 @@ public class CityController {
     }
 
     @GetMapping
-    public List<City> getAllCities(@RequestParam(name = "searchFor", required = false) String searchFor,
-                                      @RequestParam(name = "regionId",required = false) Long regionId) {
-        if (regionId!= null && searchFor!=null) {
-            return service.getAllCitiesByRegionId(searchFor,regionId);
-            //return service.getAllRegionsSearch(searchFor);
+    public List<City> getAllCities(
+            @RequestParam(name = "searchFor", required = false) String searchFor,
+                                      @RequestParam(name = "regionId",required = false) Long[] regionIds) {
+        if (regionIds!= null && searchFor!=null) {
+            return service.getAllCitiesByRegionIds(searchFor,regionIds);
         }
-        if(regionId!=null)
+        if(regionIds!=null)
         {
-            return service.getCitiesByRegionId(regionId);
+            return service.getCitiesByRegionId(regionIds);
         }
         return service.getAllCities();
     }
@@ -49,7 +49,7 @@ public class CityController {
             service.deleteCitiesAll();
             return "DELETED";
         } else {
-            return "Wrong param value: \'deleteAll\'";
+            return "Wrong param value: 'deleteAll'";
         }
 
     }

@@ -10,6 +10,7 @@ public interface CityRepo extends JpaRepository<City,Long> {
 
     List<City> findByCityNameContainingIgnoreCase(String searchFor);
     List<City> findByRegion(Region region);
-    List<City> findByCityNameContainingIgnoreCaseAndRegion_Id(String searchFor, Long id);
+    List<City> findByCityNameContainingIgnoreCaseAndRegion_IdIn(String searchFor, Long[] id);
+    List<City> findAllByRegion_IdIn(Long[] Ids);
 
 }
