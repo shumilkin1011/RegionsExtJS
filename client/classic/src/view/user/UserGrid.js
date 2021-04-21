@@ -11,7 +11,44 @@ Ext.define('extJSApp.view.user.UserGrid', {
 
     title: "Пользователи",
     store: 'extJSApp.store.User',
+    listeners: {
+        select: function (cmp, rec, index, eOpts) {
+            var win = Ext.create('Ext.window.Window', {
+                layout: 'fit',
+                iconCls: 'x-fa fa-user',
+                title: rec.get('lastName') + " " + rec.get('firstName'),
+                titleAlign: 'center',
+                ghost: false,
+                listeners: {
+                    beforeclose: function (window) {
+                        if (window.down('form').isDirty() && !window.isConfirmed) {
+                            Ext.MessageBox.confirm('Закрытие окна', 'Вы точно хотите закрыть это окно? Все несохранённые данные будут удалены.',
+                                function (btn) {
+                                    if (btn === 'yes') {
+                                        window.isConfirmed = true;
+                                        window.close();
+                                    }
+                                });
+                            return false;
+                        } else return true;
+                    }
+                },
+                items: [{
+                    xtype: 'userform',
+                    trackResetOnLoad: true,
+                    listeners: {
+                        added: function (cmp) {
+                            cmp.reset();
+                        }
+                    }
 
+                }]
+            });
+            var form = win.down('form');
+            form.loadRecord(rec);
+            win.show();
+        }
+    },
 
     columns: [
         {
@@ -70,7 +107,25 @@ Ext.define('extJSApp.view.user.UserGrid', {
             xtype: 'button', text: 'Добавить пользователя', handler: function () {
                 var win = Ext.create('Ext.window.Window', {
                     layout: 'fit',
-                    items: [ {
+                    iconCls: 'x-fa fa-user',
+                    title: 'Пользователь',
+                    titleAlign: 'center',
+                    ghost: false,
+                    listeners: {
+                        beforeclose: function (window) {
+                            if (window.down('form').isDirty() && !window.isConfirmed) {
+                                Ext.MessageBox.confirm('Закрытие окна', 'Вы точно хотите закрыть это окно? Все несохранённые данные будут удалены.',
+                                    function (btn) {
+                                        if (btn === 'yes') {
+                                            window.isConfirmed = true;
+                                            window.close();
+                                        }
+                                    });
+                                return false;
+                            } else return true;
+                        }
+                    },
+                    items: [{
                         xtype: 'userform'
                     }]
                 });

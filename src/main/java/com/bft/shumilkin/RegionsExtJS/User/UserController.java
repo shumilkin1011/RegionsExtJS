@@ -1,6 +1,7 @@
 package com.bft.shumilkin.RegionsExtJS.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,8 +30,8 @@ public class UserController {
 //    }
 
     @PostMapping
-    public String saveUser(@RequestBody User user) {
+    public ResponseEntity<String> saveUser(@RequestBody User user) {
         service.saveUser(user);
-        return "SAVED";
+        return ResponseEntity.ok("{\"success\": true}");
     }
 }

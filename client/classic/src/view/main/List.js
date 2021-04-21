@@ -21,7 +21,6 @@ Ext.define('extJSApp.view.main.List', {
         store: "{regionStoreMain}"
     },
 
-
     columns: [
         {
             text: '№',

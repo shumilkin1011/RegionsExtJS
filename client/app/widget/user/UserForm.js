@@ -1,8 +1,8 @@
 Ext.define('extJSApp.widget.user.UserForm', {
     extend: 'Ext.form.Panel',
-    title: 'Пользователь',
     width: 600,
     xtype: 'userform',
+    header: false,
     jsonSubmit: true,
     model: 'extJSApp.model.User',
     items: [
@@ -12,19 +12,20 @@ Ext.define('extJSApp.widget.user.UserForm', {
             layout: 'hbox',
             flex: 1,
             margin: '10 0 0 0',
+
             items: [
                 {
                     margin: '0 10 0 20',
                     labelAlign: 'top',
                     fieldLabel: 'Фамилия',
-                    name: 'firstName',
+                    name: 'lastName',
                     allowBlank: false,
                 },
                 {
                     margin: '0 10 0 10',
                     labelAlign: 'top',
                     fieldLabel: 'Имя',
-                    name: 'lastName',
+                    name: 'firstName',
                     allowBlank: false,
                 },
                 {
@@ -151,20 +152,24 @@ Ext.define('extJSApp.widget.user.UserForm', {
         {
             text: 'Сохранить пользователя',
             handler: function() {
-                debugger;
                 var form = this.up('form').getForm();
+                form.owner.mask('Сохраняем...')
+
                 if (form.isValid()) {
                     form.submit({
                         url: '../api/v1/users',
                         success: function(form, action) {
-                            Ext.Msg.alert('Success', action.result.message);
+                            Ext.Msg.alert('Успех!', "Пользователь сохранён");
+                            form.owner.unmask();
                         },
                         failure: function(form, action) {
-                            Ext.Msg.alert('User saved', action.result ? action.result.message : 'No response');
+                            Ext.Msg.alert('Недача!', 'Произошла ошибка');
+                            form.owner.unmask();
                         }
                     });
                 } else {
-                    Ext.Msg.alert( "Error!", "Your form is invalid!" );
+                    Ext.Msg.alert( "Ошибка!", "Форма заполнена с ошибками!" );
+                    form.owner.unmask()
                 }
             }
         }
