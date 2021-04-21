@@ -13,7 +13,7 @@ Ext.define('extJSApp.store.Region', {
         url : '../api/v1/regions',
         reader: {
             type:'json',
-            root:'content'
+            rootProperty:'content'
         }
     },
     autoLoad: true,

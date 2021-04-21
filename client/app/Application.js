@@ -19,7 +19,9 @@ Ext.define('extJSApp.Application', {
         'extJSApp.store.Country',
         'extJSApp.store.City',
         'extJSApp.store.RegionFullData',
-        'extJSApp.store.CountryAll'
+        'extJSApp.store.CountryAll',
+        'extJSApp.store.CoffeeTypes',
+        'extJSApp.store.User'
     ],
 
     onAppUpdate: function () {

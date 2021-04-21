@@ -107,5 +107,21 @@ Ext.define('extJSApp.view.main.Main', {
                     xtype: 'tagFieldMain'
                 }
             ]
+        },
+        {
+            title: 'Сохраняем пользователей',
+            items: [
+                {
+                    //xtype: 'userform',
+                }
+            ]
+        },
+        {
+            title: 'Список пользователей',
+            items: [
+                {
+                    xtype: 'userList'
+                }
+            ]
         }]
 });
