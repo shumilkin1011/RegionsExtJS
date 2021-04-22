@@ -5,6 +5,19 @@ Ext.define('extJSApp.widget.user.UserForm', {
     header: false,
     jsonSubmit: true,
     model: 'extJSApp.model.User',
+    initialValues: Ext.create('extJSApp.model.User', {
+        "id": '',
+        "firstName": '',
+        "lastName": '',
+        "middleName": '',
+        "email": '',
+        "coffeeType": null,
+        "age": '21',
+        "sex": 'MALE',
+        "likesCoffee": false,
+        "likesTea": false
+    }),
+    trackResetOnLoad: true,
     items: [
         {
             xtype: "fieldcontainer",
@@ -14,6 +27,11 @@ Ext.define('extJSApp.widget.user.UserForm', {
             margin: '10 0 0 0',
 
             items: [
+                {
+                    hidden: true,
+                    name: 'id',
+                    dataIndex: 'id'
+                },
                 {
                     margin: '0 10 0 20',
                     labelAlign: 'top',
@@ -161,6 +179,7 @@ Ext.define('extJSApp.widget.user.UserForm', {
                             Ext.Msg.alert('Успех!', "Пользователь сохранён", function (btn) {
                                 if (btn == "ok") {
                                     form.owner.ownerCt.isConfirmed = true;
+                                    form.owner.up('userList').view.getStore().load();
                                     form.owner.ownerCt.close();
                                 }
                             });
@@ -172,6 +191,7 @@ Ext.define('extJSApp.widget.user.UserForm', {
                             Ext.Msg.alert('Недача!', 'Произошла ошибка', function (btn) {
                                 if (btn == "ok") {
                                     form.owner.ownerCt.isConfirmed = true;
+                                    form.owner.up('userList').view.getStore().load();
                                     form.owner.ownerCt.close();
                                 }
                             });

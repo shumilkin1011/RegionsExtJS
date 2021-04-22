@@ -11,20 +11,16 @@ Ext.define('extJSApp.view.user.UserGrid', {
 
     title: "Пользователи",
     store: 'extJSApp.store.User',
+    allowDeselect: true,
     listeners: {
         select: function (cmp, rec, index, eOpts) {
-            var win = Ext.create('extJSApp.widget.user.UserWindows', {
-                title: rec.get('lastName') + " " + rec.get('firstName'),
-                items: [{
-                    xtype: 'userform',
-                    trackResetOnLoad: true,
-                 }],
-            });
+            var win = Ext.getCmp('userWindow');
             var form = win.down('form');
+            win.setTitle(rec.get('lastName') + " " + rec.get('firstName'));
             form.loadRecord(rec);
             form.reset();
             win.show();
-        }
+        },
     },
 
     columns: [
@@ -87,16 +83,31 @@ Ext.define('extJSApp.view.user.UserGrid', {
             falseText: 'НЕТ',
             width: 70,
         },
+        {
+            layout: 'fit',
+            width: 600,
+            xtype: 'userwindow',
+            renderTo: Ext.getBody(),
+            id: 'userWindow',
+            closeAction: 'hide',
+            hidden: true,
+        },
 
     ],
     bbar: [
         {
             xtype: 'button', text: 'Добавить пользователя', handler: function () {
-                var win = Ext.create('extJSApp.widget.user.UserWindows');
+                var win = Ext.getCmp('userWindow');
+                var form = win.down('form');
+
+                form.getForm().loadRecord(form.initialValues);
+                form.reset();
+                win.setTitle('Новый пользователь');
                 win.show();
             }
         }
     ]
-});
+})
+;
 
 

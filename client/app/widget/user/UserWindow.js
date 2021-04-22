@@ -1,4 +1,4 @@
-Ext.define('extJSApp.widget.user.UserWindows', {
+Ext.define('extJSApp.widget.user.UserWindow', {
     extend: 'Ext.window.Window',
     xtype: 'userwindow',
     layout: 'fit',
@@ -18,11 +18,12 @@ Ext.define('extJSApp.widget.user.UserWindows', {
                     });
                 return false;
             } else {
+                window.isConfirmed = false;
                 return true;
             }
         }
     },
     items: [{
-        xtype: 'userform'
+        xtype: 'userform',
     }]
 });
