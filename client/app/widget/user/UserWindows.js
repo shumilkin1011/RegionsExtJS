@@ -8,7 +8,6 @@ Ext.define('extJSApp.widget.user.UserWindows', {
     ghost: false,
     listeners: {
         beforeclose: function (window, eOpts) {
-            debugger;
             if (window.down('form').isDirty() && !window.isConfirmed) {
                 Ext.MessageBox.confirm('Закрытие окна', 'Вы точно хотите закрыть это окно? Все несохранённые данные будут удалены.',
                     function (btn) {

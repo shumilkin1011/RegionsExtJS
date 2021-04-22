@@ -65,7 +65,6 @@ Ext.define('extJSApp.widget.user.UserForm', {
                     labelAlign: 'left',
                     boxLabel: 'М',
                     name: 'sex',
-                    checked: true,
                 },
                 {
                     xtype: 'radiofield',

@@ -18,16 +18,11 @@ Ext.define('extJSApp.view.user.UserGrid', {
                 items: [{
                     xtype: 'userform',
                     trackResetOnLoad: true,
-                    listeners: {
-                        added: function (cmp) {
-                            cmp.reset();
-                        }
-                    }
-
-                }]
+                 }],
             });
             var form = win.down('form');
             form.loadRecord(rec);
+            form.reset();
             win.show();
         }
     },
@@ -37,32 +32,39 @@ Ext.define('extJSApp.view.user.UserGrid', {
             text: '№',
             dataIndex: 'id',
             draggable: true,
+            width: 70,
         },
         {
             text: 'Имя',
             dataIndex: 'firstName',
             draggable: true,
+            flex: 1,
         },
         {
             dataIndex: 'lastName',
             text: 'Фамилия',
+            flex: 1,
 
         },
         {
             dataIndex: 'middleName',
             text: 'Отчество',
+            flex: 1,
         },
         {
             dataIndex: 'age',
             text: 'Возраст',
+            width: 70,
         },
         {
             dataIndex: 'sex',
             text: 'Пол',
+            width: 100,
         },
         {
             dataIndex: 'email',
             text: 'Эл/почта',
+            flex: 1,
         },
         {
             xtype: 'booleancolumn',
@@ -70,10 +72,12 @@ Ext.define('extJSApp.view.user.UserGrid', {
             text: 'Кофе?',
             trueText: 'ДА',
             falseText: 'НЕТ',
+            width: 70,
         },
         {
             dataIndex: 'coffeeType',
             text: 'Любимый кофе',
+            flex: 1,
         },
         {
             xtype: 'booleancolumn',
@@ -81,6 +85,7 @@ Ext.define('extJSApp.view.user.UserGrid', {
             text: 'Чай?',
             trueText: 'ДА',
             falseText: 'НЕТ',
+            width: 70,
         },
 
     ],
@@ -92,7 +97,6 @@ Ext.define('extJSApp.view.user.UserGrid', {
             }
         }
     ]
-
 });
 
 
