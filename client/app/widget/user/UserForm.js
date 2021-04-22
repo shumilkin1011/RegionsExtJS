@@ -151,24 +151,36 @@ Ext.define('extJSApp.widget.user.UserForm', {
     buttons: [
         {
             text: 'Сохранить пользователя',
-            handler: function() {
+            handler: function () {
                 var form = this.up('form').getForm();
                 form.owner.mask('Сохраняем...')
 
                 if (form.isValid()) {
                     form.submit({
                         url: '../api/v1/users',
-                        success: function(form, action) {
-                            Ext.Msg.alert('Успех!', "Пользователь сохранён");
+                        success: function (form, action) {
+                            Ext.Msg.alert('Успех!', "Пользователь сохранён", function (btn) {
+                                if (btn == "ok") {
+                                    form.owner.ownerCt.isConfirmed = true;
+                                    form.owner.ownerCt.close();
+                                }
+                            });
                             form.owner.unmask();
+
                         },
-                        failure: function(form, action) {
-                            Ext.Msg.alert('Недача!', 'Произошла ошибка');
+
+                        failure: function (form, action) {
+                            Ext.Msg.alert('Недача!', 'Произошла ошибка', function (btn) {
+                                if (btn == "ok") {
+                                    form.owner.ownerCt.isConfirmed = true;
+                                    form.owner.ownerCt.close();
+                                }
+                            });
                             form.owner.unmask();
                         }
                     });
                 } else {
-                    Ext.Msg.alert( "Ошибка!", "Форма заполнена с ошибками!" );
+                    Ext.Msg.alert("Ошибка!", "Форма заполнена с ошибками!");
                     form.owner.unmask()
                 }
             }

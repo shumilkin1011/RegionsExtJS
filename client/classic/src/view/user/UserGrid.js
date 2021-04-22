@@ -13,26 +13,8 @@ Ext.define('extJSApp.view.user.UserGrid', {
     store: 'extJSApp.store.User',
     listeners: {
         select: function (cmp, rec, index, eOpts) {
-            var win = Ext.create('Ext.window.Window', {
-                layout: 'fit',
-                iconCls: 'x-fa fa-user',
+            var win = Ext.create('extJSApp.widget.user.UserWindows', {
                 title: rec.get('lastName') + " " + rec.get('firstName'),
-                titleAlign: 'center',
-                ghost: false,
-                listeners: {
-                    beforeclose: function (window) {
-                        if (window.down('form').isDirty() && !window.isConfirmed) {
-                            Ext.MessageBox.confirm('Закрытие окна', 'Вы точно хотите закрыть это окно? Все несохранённые данные будут удалены.',
-                                function (btn) {
-                                    if (btn === 'yes') {
-                                        window.isConfirmed = true;
-                                        window.close();
-                                    }
-                                });
-                            return false;
-                        } else return true;
-                    }
-                },
                 items: [{
                     xtype: 'userform',
                     trackResetOnLoad: true,
@@ -105,30 +87,7 @@ Ext.define('extJSApp.view.user.UserGrid', {
     bbar: [
         {
             xtype: 'button', text: 'Добавить пользователя', handler: function () {
-                var win = Ext.create('Ext.window.Window', {
-                    layout: 'fit',
-                    iconCls: 'x-fa fa-user',
-                    title: 'Пользователь',
-                    titleAlign: 'center',
-                    ghost: false,
-                    listeners: {
-                        beforeclose: function (window) {
-                            if (window.down('form').isDirty() && !window.isConfirmed) {
-                                Ext.MessageBox.confirm('Закрытие окна', 'Вы точно хотите закрыть это окно? Все несохранённые данные будут удалены.',
-                                    function (btn) {
-                                        if (btn === 'yes') {
-                                            window.isConfirmed = true;
-                                            window.close();
-                                        }
-                                    });
-                                return false;
-                            } else return true;
-                        }
-                    },
-                    items: [{
-                        xtype: 'userform'
-                    }]
-                });
+                var win = Ext.create('extJSApp.widget.user.UserWindows');
                 win.show();
             }
         }
