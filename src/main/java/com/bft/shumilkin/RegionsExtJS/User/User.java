@@ -21,6 +21,7 @@ public class User {
     @NotNull
     UserSexEnum sex;
     boolean likesCoffee, likesTea;
+    Long favFemNameId;
 
     public User() {
 

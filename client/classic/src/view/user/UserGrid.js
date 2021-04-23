@@ -17,8 +17,18 @@ Ext.define('extJSApp.view.user.UserGrid', {
             var win = Ext.getCmp('userWindow');
             var form = win.down('form');
             win.setTitle(rec.get('lastName') + " " + rec.get('firstName'));
-            form.loadRecord(rec);
-            form.reset();
+
+            var femStore = form.getForm().getFields().get("comboBoxFemName").getStore();
+            femStore.load(function () {
+                form.loadRecord(rec);
+                form.reset();
+            },
+                {
+                    params: {
+                        'femNameId': rec.get('favFemNameId')
+                    }
+                }
+            )
             win.show();
         },
     },

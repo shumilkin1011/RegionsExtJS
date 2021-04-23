@@ -1,6 +1,7 @@
 package com.bft.shumilkin.RegionsExtJS.FemaleName;
 
 import org.springframework.data.domain.*;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class FemaleNameController {
 
     @GetMapping
     public Page<FemaleName> getFemNames(FemaleNameParams params) {
+        if(params.getFemNameId() != null) return service.getFemNameById(params.getFemNameId());
         int size = params.getLimit() == 0 ? 10 : params.getLimit();
         int page = params.getPage() == 0 ? 0 : params.getPage()-1;
         Sort sort;
@@ -29,11 +31,11 @@ public class FemaleNameController {
             sort = Sort.by(Sort.Direction.fromString(params.getDir()), params.getSort());
         }
         Pageable p = PageRequest.of(page,size,sort);
-        return service.getFemNames(p);
+        return service.getFemNames(params.getSearchFor(),p);
     }
 
     @PostMapping
-    public String saveFemNames(@RequestBody List<FemaleName> femNames) {
+    public String saveFemNames(@RequestBody @Validated List<FemaleName> femNames) {
         service.saveFemNames(femNames);
         return "SAVED";
     }

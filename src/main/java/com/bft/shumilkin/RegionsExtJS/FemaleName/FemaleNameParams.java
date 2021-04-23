@@ -8,4 +8,6 @@ public class FemaleNameParams {
     private int page;
     private String sort;
     private String dir;
+    private String searchFor;
+    private Long femNameId;
 }

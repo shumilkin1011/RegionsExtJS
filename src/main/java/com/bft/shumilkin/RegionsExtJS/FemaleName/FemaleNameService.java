@@ -2,6 +2,7 @@ package com.bft.shumilkin.RegionsExtJS.FemaleName;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,12 @@ public class FemaleNameService {
         repo.saveAll(names);
     }
 
-    public Page<FemaleName> getFemNames(Pageable p) {
-       return repo.findAll(p);
+    public Page<FemaleName> getFemNames(String searchFor, Pageable p) {
+        if(searchFor == null) return repo.findAll(p);
+        return repo.findByFemNameStartsWithIgnoreCase(searchFor,p);
+    }
+
+    public Page<FemaleName> getFemNameById(Long femNameId) {
+        return new PageImpl<FemaleName>(List.of(repo.findById(femNameId).orElseThrow()));
     }
 }

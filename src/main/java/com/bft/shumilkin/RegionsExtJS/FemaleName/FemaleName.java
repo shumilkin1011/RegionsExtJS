@@ -1,7 +1,7 @@
 package com.bft.shumilkin.RegionsExtJS.FemaleName;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
-import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 
@@ -15,7 +15,8 @@ public class FemaleName {
     @GeneratedValue(generator = "fem_nameSeq")
     Long id;
     @Column(name = "femname")
-    String femname;
+    @NotNull
+    String femName;
 
     public FemaleName() {
     }
