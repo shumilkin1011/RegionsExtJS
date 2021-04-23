@@ -31,7 +31,6 @@ Ext.define('extJSApp.view.countries.RussianComboBoxes', {
             ],
             listeners: {
                 render: function (comp) {
-                    debugger;
                     comp.store.findRecord('name', 'Russian Federation').set('priority', 10);
                     comp.store.load();
                 },

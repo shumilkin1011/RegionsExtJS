@@ -17,7 +17,7 @@ Ext.define('extJSApp.widget.user.UserForm', {
         "email": '',
         "coffeeType": null,
         "age": '21',
-        'femNameId': 1,
+        'favFemNameId' : '',
         "sex": 'MALE',
         "likesCoffee": false,
         "likesTea": false
@@ -131,16 +131,15 @@ Ext.define('extJSApp.widget.user.UserForm', {
                     format: 'd/m/Y',
                     formatText: '',
                     listeners: {
-                        change: function ( cmp, newValue, oldValue, eOpts )
-                        {
+                        change: function (cmp, newValue, oldValue, eOpts) {
                             cmp.ownerCt.ownerCt.dates.bef = newValue;
                         }
                     },
                     validator: function () {
                         var bef = this.ownerCt.ownerCt.dates.bef;
                         var aft = this.ownerCt.ownerCt.dates.aft;
-                        if(bef != '' && aft != '') {
-                            var elapsed = aft-bef;
+                        if (bef != '' && aft != '') {
+                            var elapsed = aft - bef;
                             return elapsed > 0 ? true : "Первая дата должна быть раньше чем вторая"
                         }
                         return true;
@@ -156,16 +155,15 @@ Ext.define('extJSApp.widget.user.UserForm', {
                     fieldLabel: 'ДО',
                     format: 'd/m/Y',
                     listeners: {
-                        change: function ( cmp, newValue, oldValue, eOpts )
-                        {
+                        change: function (cmp, newValue, oldValue, eOpts) {
                             cmp.ownerCt.ownerCt.dates.aft = newValue;
                         }
                     },
                     validator: function () {
                         var bef = this.ownerCt.ownerCt.dates.bef;
                         var aft = this.ownerCt.ownerCt.dates.aft;
-                        if(bef != '' && aft != '') {
-                            var elapsed = aft-bef;
+                        if (bef != '' && aft != '') {
+                            var elapsed = aft - bef;
                             return elapsed > 0 ? true : "Первая дата должна быть раньше чем вторая"
                         }
                         return true;
