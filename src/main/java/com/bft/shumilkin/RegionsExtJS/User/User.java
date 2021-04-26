@@ -1,15 +1,16 @@
 package com.bft.shumilkin.RegionsExtJS.User;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Table(name = "users")
 @Entity
 @Data
 public class User {
-
     @SequenceGenerator(name = "userSeq")
     @GeneratedValue(generator = "userSeq")
     @Id()
@@ -21,6 +22,9 @@ public class User {
     @NotNull
     UserSexEnum sex;
     boolean likesCoffee, likesTea;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="yyyy-MM-dd")
+    Date birthday;
     Long favFemNameId;
 
     public User() {

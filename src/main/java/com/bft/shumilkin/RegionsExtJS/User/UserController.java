@@ -1,10 +1,11 @@
 package com.bft.shumilkin.RegionsExtJS.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController()
@@ -19,15 +20,10 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getUsers() {
+    public List<User> getUsers(@RequestParam(required = false) @DateTimeFormat(pattern = "dd.mm.yyyy")Date birthday) {
+        if(birthday != null) return service.getUsersByBirthday(birthday);
         return service.getUsers();
     }
-
-//    @PostMapping
-//    public String saveUsers(@RequestBody List<User> users) {
-//        service.saveUsers(users);
-//        return "SAVED";
-//    }
 
     @PostMapping
     public ResponseEntity<String> saveUser(@RequestBody User user) {

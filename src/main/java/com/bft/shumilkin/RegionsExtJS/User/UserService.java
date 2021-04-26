@@ -3,6 +3,7 @@ package com.bft.shumilkin.RegionsExtJS.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -19,9 +20,9 @@ public class UserService {
         return repo.findAll();
     }
 
-//    public void saveUsers(List<User> users) {
-//        repo.saveAll(users);
-//    }
+public List<User> getUsersByBirthday(Date birthday) {
+        return repo.findByBirthday(birthday);
+}
 
     public void saveUser(User user) {
         repo.save(user);

@@ -102,10 +102,50 @@ Ext.define('extJSApp.view.user.UserGrid', {
             id: 'userWindow',
             closeAction: 'hide',
             hidden: true,
-        },
+        }
+    ],
+    items: [
+        {
+            xtype: "gridpanel",
+            store: "extJSApp.store.User",
+            title: 'tit',
+            columns: [
+                {
+                    text: 'Имя',
+                    dataIndex: 'firstName'
+                },
+                {
+                    text: 'ДР',
+                    dataIndex: 'birthday'
+                }
+            ]
 
+        },
     ],
     bbar: [
+        {
+            xtype: 'textfield',
+        },
+        {
+            xtype: 'button',
+            text: 'filter',
+            handler: function () {
+                debugger;
+                var date = this.ownerCt.down('textfield').value;
+                var userStore = this.ownerCt.ownerCt.store;
+
+                userStore.load(
+                    {
+                        params: {
+                            'birthday': date,
+                        },
+                        scope: this,
+                        callback: function () {
+
+                        }
+                    });
+            }
+        },
         {
             xtype: 'button', text: 'Добавить пользователя', handler: function () {
                 var win = Ext.getCmp('userWindow');

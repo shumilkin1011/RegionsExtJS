@@ -15,6 +15,7 @@ Ext.define('extJSApp.widget.user.UserForm', {
         "lastName": '',
         "middleName": '',
         "email": '',
+        "birthday" : '1970-01-01',
         "coffeeType": null,
         "age": '21',
         'favFemNameId' : '',
@@ -73,6 +74,17 @@ Ext.define('extJSApp.widget.user.UserForm', {
                     name: 'email',
                     vtype: 'email',
                     allowBlank: false,
+                },
+                {
+                    margin: '0 0 0 10',
+                    xtype: "datefield",
+                    labelAlign: 'top',
+                    dateFormat: 'd/m/Y',
+                    submitValue: true,
+                    format: 'd/m/Y',
+                    fieldLabel: 'Дата рождения',
+                    name: 'birthday',
+                    allowBlank: false,
                 }
             ]
         },
@@ -128,7 +140,7 @@ Ext.define('extJSApp.widget.user.UserForm', {
                     labelAlign: 'left',
                     labelWidth: '7',
                     fieldLabel: 'С',
-                    format: 'd/m/Y',
+                    format: 'Y/m/d',
                     formatText: '',
                     listeners: {
                         change: function (cmp, newValue, oldValue, eOpts) {
@@ -252,6 +264,7 @@ Ext.define('extJSApp.widget.user.UserForm', {
                 var form = this.up('form').getForm();
                 form.owner.mask('Сохраняем...')
 
+                debugger;
                 if (form.isValid()) {
                     form.submit({
                         url: '../api/v1/users',
