@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getUsers(@RequestParam(required = false) @DateTimeFormat(pattern = "dd.mm.yyyy")Date birthday) {
+    public List<User> getUsers(@RequestParam(required = false) @DateTimeFormat(pattern = "dd/MM/yyyy")Date birthday) {
         if(birthday != null) return service.getUsersByBirthday(birthday);
         return service.getUsers();
     }

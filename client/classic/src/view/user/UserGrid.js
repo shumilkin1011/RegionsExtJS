@@ -156,6 +156,26 @@ Ext.define('extJSApp.view.user.UserGrid', {
                 win.setTitle('Новый пользователь');
                 win.show();
             }
+        },
+        {
+            xtype: 'numberfield',
+            anchor: '100%',
+            fieldLabel: 'Два знака после запятой',
+            decimalPrecision:2,
+            value: 0.00,
+            step: 0.10,
+            listeners:{
+                render : function(){
+                    var value = this.getValue()
+                    newValue = value.toFixed(2);
+                    this.setRawValue(newValue);
+                },
+                blur:function(){
+                    var value = this.getValue()
+                    newValue = value.toFixed(2);
+                    this.setRawValue(newValue);
+                }
+            }
         }
     ]
 })
