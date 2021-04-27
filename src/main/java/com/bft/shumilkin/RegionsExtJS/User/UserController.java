@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController()
@@ -20,8 +20,9 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getUsers(@RequestParam(required = false) @DateTimeFormat(pattern = "dd/MM/yyyy")Date birthday) {
-        if(birthday != null) return service.getUsersByBirthday(birthday);
+    public List<User> getUsers(@RequestParam(name = "dateStart", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate dateStart,
+                               @RequestParam(name = "dateEnd", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate dateEnd) {
+        if (dateStart != null && dateEnd != null) return service.getBirthdaysBetween(dateStart, dateEnd);
         return service.getUsers();
     }
 

@@ -124,59 +124,92 @@ Ext.define('extJSApp.view.user.UserGrid', {
     ],
     bbar: [
         {
-            xtype: 'textfield',
-        },
-        {
-            xtype: 'button',
-            text: 'filter',
-            handler: function () {
-                debugger;
-                var date = this.ownerCt.down('textfield').value;
-                var userStore = this.ownerCt.ownerCt.store;
+            xtype: 'fieldcontainer',
+            layout: 'vbox',
+            items: [
+                {
+                    xtype: 'fieldcontainer',
+                    layout: 'vbox',
+                    items: [
+                        {
+                            xtype: 'button', text: 'Добавить пользователя', handler: function () {
+                                var win = Ext.getCmp('userWindow');
+                                var form = win.down('form');
 
-                userStore.load(
-                    {
-                        params: {
-                            'birthday': date,
+                                form.getForm().loadRecord(form.initialValues);
+                                form.reset();
+                                win.setTitle('Новый пользователь');
+                                win.show();
+                            }
                         },
-                        scope: this,
-                        callback: function () {
-
-                        }
-                    });
-            }
-        },
-        {
-            xtype: 'button', text: 'Добавить пользователя', handler: function () {
-                var win = Ext.getCmp('userWindow');
-                var form = win.down('form');
-
-                form.getForm().loadRecord(form.initialValues);
-                form.reset();
-                win.setTitle('Новый пользователь');
-                win.show();
-            }
-        },
-        {
-            xtype: 'numberfield',
-            anchor: '100%',
-            fieldLabel: 'Два знака после запятой',
-            decimalPrecision:2,
-            value: 0.00,
-            step: 0.10,
-            listeners:{
-                render : function(){
-                    var value = this.getValue()
-                    newValue = value.toFixed(2);
-                    this.setRawValue(newValue);
+                        {
+                            xtype: 'numberfield',
+                            anchor: '100%',
+                            margin : '20 0 0 0',
+                            fieldLabel: 'Два знака после запятой',
+                            decimalPrecision: 2,
+                            value: 0.00,
+                            step: 0.10,
+                            listeners: {
+                                render: function () {
+                                    var value = this.getValue()
+                                    newValue = value.toFixed(2);
+                                    this.setRawValue(newValue);
+                                },
+                                blur: function () {
+                                    var value = this.getValue()
+                                    newValue = value.toFixed(2);
+                                    this.setRawValue(newValue);
+                                }
+                            }
+                        },
+                    ]
                 },
-                blur:function(){
-                    var value = this.getValue()
-                    newValue = value.toFixed(2);
-                    this.setRawValue(newValue);
-                }
-            }
+
+                {
+                    xtype: 'fieldcontainer',
+                    layout: 'vbox',
+                    items: [
+                        {
+                            labelAlign: 'top',
+                            fieldLabel: "С",
+                            submitFormat: 'Y-m-d',
+                            xtype: 'datefield',
+                        },
+                        {
+                            labelAlign: 'top',
+                            fieldLabel: "До",
+                            submitFormat: 'Y-m-d',
+                            xtype: 'datefield',
+                        },
+                        {
+                            xtype: 'button',
+                            align: 'center',
+                            text: 'Диапазон дат',
+                            handler: function () {
+                                debugger;
+                                var dateStart = this.ownerCt.items.items[0].getSubmitValue();
+                                var dateEnd = this.ownerCt.items.items[1].getSubmitValue();
+                                var userStore = this.ownerCt.ownerCt.ownerCt.ownerCt.store;
+
+                                userStore.load(
+                                    {
+                                        params: {
+                                            'dateStart': dateStart,
+                                            'dateEnd': dateEnd,
+                                        },
+                                        scope: this,
+                                        callback: function () {
+
+                                        }
+                                    });
+                            }
+                        },
+                    ]
+                },
+            ]
         }
+
     ]
 })
 ;

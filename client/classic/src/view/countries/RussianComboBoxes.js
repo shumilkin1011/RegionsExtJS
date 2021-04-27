@@ -35,7 +35,6 @@ Ext.define('extJSApp.view.countries.RussianComboBoxes', {
                     comp.store.load();
                 },
                 select: function (comp,rec,opt) {
-                    debugger;
                     comp.ownerCt.getViewModel().set('prevSelected',rec.get('name'));
                     comp.store.each(function (rec) {
                         rec.set('priority', 0)

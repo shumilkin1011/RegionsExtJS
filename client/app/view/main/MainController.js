@@ -84,10 +84,4 @@ Ext.define('extJSApp.view.main.MainController', {
     cloneStore(originStore, targetStore) {
         targetStore.loadData(originStore.data.items);
     },
-
-    onItemSelected: function (obj, record, eOpts) {
-        var v = record;
-       debugger;
-    }
-
 });

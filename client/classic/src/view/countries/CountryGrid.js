@@ -46,7 +46,6 @@ Ext.define('extJSApp.view.countryGrid', {
                     },
                     listeners: {
                         select: function (cmp, record,eOpts) {
-                            debugger;
                             var item = cmp.ownerCt.ownerCmp.getView().store.data.items[0];
                             item.set('id',record.get('id'));
                             item.set('regionName',record.get('extJSApp.store.Region'));

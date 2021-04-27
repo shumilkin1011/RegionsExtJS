@@ -80,7 +80,6 @@ Ext.define('extJSApp.widget.user.UserForm', {
                     xtype: "datefield",
                     labelAlign: 'top',
                     dateFormat: 'd/m/Y',
-                    submitValue: true,
                     format: 'd/m/Y',
                     fieldLabel: 'Дата рождения',
                     name: 'birthday',
@@ -129,61 +128,61 @@ Ext.define('extJSApp.widget.user.UserForm', {
                 }
             ]
         },
-        {
-            xtype: "fieldcontainer",
-            layout: 'hbox',
-            flex: 1,
-            items: [
-                {
-                    xtype: 'datefield',
-                    margin: '0 0 0 20',
-                    labelAlign: 'left',
-                    labelWidth: '7',
-                    fieldLabel: 'С',
-                    format: 'Y/m/d',
-                    formatText: '',
-                    listeners: {
-                        change: function (cmp, newValue, oldValue, eOpts) {
-                            cmp.ownerCt.ownerCt.dates.bef = newValue;
-                        }
-                    },
-                    validator: function () {
-                        var bef = this.ownerCt.ownerCt.dates.bef;
-                        var aft = this.ownerCt.ownerCt.dates.aft;
-                        if (bef != '' && aft != '') {
-                            var elapsed = aft - bef;
-                            return elapsed > 0 ? true : "Первая дата должна быть раньше чем вторая"
-                        }
-                        return true;
-                    }
-
-                },
-                {
-                    xtype: 'datefield',
-                    margin: '0 0 0 20',
-                    labelAlign: 'left',
-                    labelWidth: '7',
-                    formatText: '',
-                    fieldLabel: 'ДО',
-                    format: 'd/m/Y',
-                    listeners: {
-                        change: function (cmp, newValue, oldValue, eOpts) {
-                            cmp.ownerCt.ownerCt.dates.aft = newValue;
-                        }
-                    },
-                    validator: function () {
-                        var bef = this.ownerCt.ownerCt.dates.bef;
-                        var aft = this.ownerCt.ownerCt.dates.aft;
-                        if (bef != '' && aft != '') {
-                            var elapsed = aft - bef;
-                            return elapsed > 0 ? true : "Первая дата должна быть раньше чем вторая"
-                        }
-                        return true;
-                    }
-
-                }
-            ]
-        },
+        // {
+        //     xtype: "fieldcontainer",
+        //     layout: 'hbox',
+        //     flex: 1,
+        //     items: [
+        //         {
+        //             xtype: 'datefield',
+        //             margin: '0 0 0 20',
+        //             labelAlign: 'left',
+        //             labelWidth: '7',
+        //             fieldLabel: 'С',
+        //             format: 'Y/m/d',
+        //             formatText: '',
+        //             listeners: {
+        //                 change: function (cmp, newValue, oldValue, eOpts) {
+        //                     cmp.ownerCt.ownerCt.dates.bef = newValue;
+        //                 }
+        //             },
+        //             validator: function () {
+        //                 var bef = this.ownerCt.ownerCt.dates.bef;
+        //                 var aft = this.ownerCt.ownerCt.dates.aft;
+        //                 if (bef != '' && aft != '') {
+        //                     var elapsed = aft - bef;
+        //                     return elapsed > 0 ? true : "Первая дата должна быть раньше чем вторая"
+        //                 }
+        //                 return true;
+        //             }
+        //
+        //         },
+        //         {
+        //             xtype: 'datefield',
+        //             margin: '0 0 0 20',
+        //             labelAlign: 'left',
+        //             labelWidth: '7',
+        //             formatText: '',
+        //             fieldLabel: 'ДО',
+        //             format: 'd/m/Y',
+        //             listeners: {
+        //                 change: function (cmp, newValue, oldValue, eOpts) {
+        //                     cmp.ownerCt.ownerCt.dates.aft = newValue;
+        //                 }
+        //             },
+        //             validator: function () {
+        //                 var bef = this.ownerCt.ownerCt.dates.bef;
+        //                 var aft = this.ownerCt.ownerCt.dates.aft;
+        //                 if (bef != '' && aft != '') {
+        //                     var elapsed = aft - bef;
+        //                     return elapsed > 0 ? true : "Первая дата должна быть раньше чем вторая"
+        //                 }
+        //                 return true;
+        //             }
+        //
+        //         }
+        //     ]
+        // },
         {
             xtype: "fieldcontainer",
             layout: 'vbox',
@@ -193,7 +192,7 @@ Ext.define('extJSApp.widget.user.UserForm', {
                 {
                     xtype: 'checkboxfield',
                     boxLabel: "Любит пить кофе",
-                    margin: '0 0 0 20',
+                    margin: '2 0 0 20',
                     checked: false,
                     inputValue: 'likesCoffee',
                     name: 'likesCoffee',
@@ -264,7 +263,9 @@ Ext.define('extJSApp.widget.user.UserForm', {
                 var form = this.up('form').getForm();
                 form.owner.mask('Сохраняем...')
 
-                debugger;
+                // форматируем дату в datefield
+                form.owner.down('datefield').rawDate = Ext.Date.format(form.owner.down('datefield').value,'Y-m-d');
+
                 if (form.isValid()) {
                     form.submit({
                         url: '../api/v1/users',
