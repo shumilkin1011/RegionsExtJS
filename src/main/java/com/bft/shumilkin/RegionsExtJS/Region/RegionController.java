@@ -57,6 +57,10 @@ public class RegionController {
         return service.getAllRegionsPageable(pageable);
     }
 
+    @GetMapping(path = "/bad")
+    public List<Region> getBadRegions() {
+        return service.getAllRegions().subList(89,92);
+    }
 
     @GetMapping(path = "/{id}")
     public Region getRegionById(@PathVariable(value = "id") Long id) {

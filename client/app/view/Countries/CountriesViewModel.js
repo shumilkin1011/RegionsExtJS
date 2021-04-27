@@ -16,7 +16,6 @@ Ext.define('extJSApp.view.Countries.CountriesViewModel', {
             autoLoad: false,
           },
         regionStore: {
-            viewModel: 'countries',
             type: 'Region',
             autoLoad: false,
             listeners: {
