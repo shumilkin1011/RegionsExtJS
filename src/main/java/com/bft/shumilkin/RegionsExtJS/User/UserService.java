@@ -22,7 +22,7 @@ public class UserService {
     }
 
 
-    public List<User> getBirthdaysBetween(LocalDate dateStart, LocalDate dateEnd) {
+    public List<User> getBirthdaysBetween(Date dateStart, Date dateEnd) {
         return repo.findUsersByBirthdayBetween(dateStart, dateEnd);
     }
 

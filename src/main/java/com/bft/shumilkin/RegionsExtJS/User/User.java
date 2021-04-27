@@ -5,7 +5,7 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Table(name = "users")
 @Entity
@@ -23,7 +23,7 @@ public class User {
     UserSexEnum sex;
     boolean likesCoffee, likesTea;
     @JsonFormat(pattern = "yyyy-MM-dd")
-    LocalDate birthday;
+    Date birthday;
     Long favFemNameId;
 
     public User() {

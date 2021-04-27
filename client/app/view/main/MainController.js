@@ -2,7 +2,6 @@ Ext.define('extJSApp.view.main.MainController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.main',
 
-    // загрузка на первой странице + mask
     onStoreBeforeLoadMain : function ( store, operation, eOpts) {
         var model = this.getView('extJSApp.view.main.List');
         model.mask("loading...");
