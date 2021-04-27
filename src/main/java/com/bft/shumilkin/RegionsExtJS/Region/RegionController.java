@@ -59,7 +59,8 @@ public class RegionController {
 
     @GetMapping(path = "/bad")
     public List<Region> getBadRegions() {
-        return service.getAllRegions().subList(89,92);
+        return null;
+        //  service.getAllRegions().subList(89,92);
     }
 
     @GetMapping(path = "/{id}")

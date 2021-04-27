@@ -18,7 +18,7 @@ Ext.define('extJSApp.store.RegionBad', {
     autoLoad: true,
     listeners: {
         load: function (store) {
-            if (this.count() < 0) return;
+            if (this.count() < 1) return;
             var win = Ext.create('Ext.window.Window', {
                 title: 'Найдены некорректные данные!!!',
                 width: 350,
