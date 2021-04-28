@@ -36,7 +36,7 @@ Ext.define('extJSApp.view.main.Main', {
         flex: 1,
         layout: {
             align: 'stretch',
-            overflowHandler: 'none'
+            overflow: 'scroller'
         }
     },
 
@@ -149,6 +149,8 @@ Ext.define('extJSApp.view.main.Main', {
             items: [
                 {
                     xtype: 'textfield',
+                    fieldLabel: "Очень большой текстфилд",
+                    labelAlign: 'top',
                     validateOnChange: false,
                     msgTarget: 'none',
                     listeners: {
@@ -156,7 +158,7 @@ Ext.define('extJSApp.view.main.Main', {
                             cmp.tooltip = new Ext.tip.ToolTip({
                                 target: cmp,
                                 html: "",
-                                maxWidth: 600,
+                                maxWidth: 500,
                                 maxHeight: '100%',
                                 trackMouse: true,
                                 disabled: true
@@ -169,14 +171,14 @@ Ext.define('extJSApp.view.main.Main', {
                             var elSize = cmp.getWidth();
 
                             var disabled = (elSize - txtSize > DIFFERENCE)
-                            if(disabled) {
+                            if (disabled) {
                                 cmp.clearInvalid();
                                 return
                             }
 
                             cmp.markInvalid(true);
-                            cmp.tooltip.setHtml(cmp.getValue());
-                            cmp.tooltip.setDisabled(disabled) ;
+                            cmp.tooltip.setHtml('<hr/> <b>' + cmp.getValue() + '</b> <hr/> ');
+                            cmp.tooltip.setDisabled(disabled);
 
                         }
                     },
