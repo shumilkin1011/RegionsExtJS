@@ -4,9 +4,10 @@
 Ext.define('extJSApp.view.main.List', {
     extend: 'Ext.grid.Panel',
     xtype: 'mainlist',
-    autoScroll: 'false',
+    autoScroll: 'true',
     stripeRows : true,
-    scrollable: false,
+    scrollable: true,
+    height: 500,
     plugins: 'gridfilters',
     viewModel : 'list',
     controller: 'main',
@@ -59,13 +60,11 @@ Ext.define('extJSApp.view.main.List', {
         },
         displayInfo: true,
         displayMsg: 'Displaying {0} to {1} of {2} &nbsp;records ',
-        emptyMsg: "No records to display&nbsp;"
+        emptyMsg: "No records to display&nbsp;",
+        listeners: {
+            beforechange: 'onPageChanged',
+        }
     }],
-
-
-    listeners: {
-        select: 'onItemSelected'
-    },
 
 });
 

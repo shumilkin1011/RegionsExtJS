@@ -1,14 +1,15 @@
 Ext.define('extJSApp.Application', {
     extend: 'Ext.app.Application',
-
     name: 'extJSApp',
-
+    defaultToken : 'users',
     quickTips: false,
+
     platformConfig: {
         desktop: {
             quickTips: true
         }
     },
+
     stores: [
         'extJSApp.store.Region',
         'extJSApp.store.Country',
@@ -19,6 +20,10 @@ Ext.define('extJSApp.Application', {
         'extJSApp.store.User',
         'extJSApp.store.FemName',
         'extJSApp.store.RegionBad'
+    ],
+
+    controllers: [
+        'extJSApp.controller.navigation.NavigationController',
     ],
 
     onAppUpdate: function () {

@@ -69,29 +69,48 @@ Ext.define('extJSApp.view.main.Main', {
     items: [{
         title: 'Просто список',
         items: [{
-            xtype: 'mainlist'
-        }]
+            xtype: 'mainlist',
+
+        }],
+
+        tabConfig: {
+            listeners: {
+                click: 'usrLstClicked'
+            }
+        }
     }, {
         title: 'Комбобоксики',
         items: [{
             xtype: 'comboBoxesMain'
+        }],
+        tabConfig: {
+            listeners: {
+                click: 'comboboxesClicked'
+            }
         }
-        ]
     }, {
         title: 'Копируем грид',
-
         items: [
             {
                 xtype: 'countryGrid'
+            }],
+        tabConfig: {
+            listeners: {
+                click: 'copyGridClicked'
             }
-        ]
+        }
     }, {
         title: 'Россия вперёд!',
         items: [
             {
                 xtype: 'comboBoxesRUS'
             }
-        ]
+        ],
+        tabConfig: {
+            listeners: {
+                click: 'russianBoxesClicked'
+            }
+        }
     },
         {
             title: 'Выбор нескольких регионов',
@@ -99,14 +118,25 @@ Ext.define('extJSApp.view.main.Main', {
                 {
                     xtype: 'tagFieldMain'
                 }
-            ]
+            ],
+            tabConfig: {
+                listeners: {
+                    click: 'tagfieldClicked'
+                }
+            }
         },
         {
             title: 'Сохраняем пользователей',
             items: [
                 {
                     xtype: 'userList',
+                    layout: 'card',
                 },
-            ]
+            ],
+            tabConfig: {
+                listeners: {
+                    click: 'usersClicked'
+                }
+            }
         }]
 });

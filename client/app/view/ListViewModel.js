@@ -22,13 +22,8 @@ Ext.define('extJSApp.view.ListViewModel', {
                     totalProperty: 'totalElements'
                 }
             },
-            listeners: {
-                beforeSort: function (store, sorters, eOpts) {
-                    //debugger;
-                }
-            },
             remoteSort: true,
-            autoLoad: {start: 0, limit: 15},
+            autoLoad: false,
             pageSize: 15
         }
     },
