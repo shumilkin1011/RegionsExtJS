@@ -20,6 +20,9 @@ Ext.define('extJSApp.view.main.MainController', {
     usersClicked: function () {
         this.redirectTo('users');
     },
+    bigBoxClicked: function () {
+        this.redirectTo('bigBox');
+    },
 
     onPageChanged: function (cmp, page) {
         this.redirectTo('regLst/'+page);

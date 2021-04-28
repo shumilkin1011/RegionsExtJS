@@ -138,5 +138,52 @@ Ext.define('extJSApp.view.main.Main', {
                     click: 'usersClicked'
                 }
             }
-        }]
+        },
+        {
+            title: 'Большой текстбокс',
+            tabConfig: {
+                listeners: {
+                    click: 'bigBoxClicked'
+                }
+            },
+            items: [
+                {
+                    xtype: 'textfield',
+                    validateOnChange: false,
+                    msgTarget: 'none',
+                    listeners: {
+                        render: function (cmp) {
+                            cmp.tooltip = new Ext.tip.ToolTip({
+                                target: cmp,
+                                html: "",
+                                maxWidth: 600,
+                                maxHeight: '100%',
+                                trackMouse: true,
+                                disabled: true
+                            })
+                        },
+
+                        change: function (cmp) {
+                            var DIFFERENCE = 25;
+                            var txtSize = Ext.util.TextMetrics.measure(cmp.getEl(), cmp.value).width;
+                            var elSize = cmp.getWidth();
+
+                            var disabled = (elSize - txtSize > DIFFERENCE)
+                            if(disabled) {
+                                cmp.clearInvalid();
+                                return
+                            }
+
+                            cmp.markInvalid(true);
+                            cmp.tooltip.setHtml(cmp.getValue());
+                            cmp.tooltip.setDisabled(disabled) ;
+
+                        }
+                    },
+                }
+
+            ],
+
+        },
+    ]
 });
