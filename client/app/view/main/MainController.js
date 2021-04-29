@@ -23,6 +23,9 @@ Ext.define('extJSApp.view.main.MainController', {
     bigBoxClicked: function () {
         this.redirectTo('bigBox');
     },
+    treeClicked: function () {
+        this.redirectTo('tree');
+    },
 
     onPageChanged: function (cmp, page) {
         this.redirectTo('regLst/'+page);

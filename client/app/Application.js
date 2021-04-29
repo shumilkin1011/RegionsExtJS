@@ -19,7 +19,8 @@ Ext.define('extJSApp.Application', {
         'extJSApp.store.CoffeeTypes',
         'extJSApp.store.User',
         'extJSApp.store.FemName',
-        'extJSApp.store.RegionBad'
+        'extJSApp.store.RegionBad',
+        'extJSApp.store.CountryTreeStore'
     ],
 
     controllers: [

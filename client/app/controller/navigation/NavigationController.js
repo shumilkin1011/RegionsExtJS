@@ -9,9 +9,14 @@ Ext.define('extJSApp.controller.navigation.NavigationController', {
         'tagfield': 'onTagField',
         'users': 'onUsers',
         'regLst/:page': 'onRegLstPage',
-        'bigBox': 'onBigBox'
+        'bigBox': 'onBigBox',
+        'tree': 'onTree'
     },
 
+    onTree: function () {
+        var grid = Ext.getApplication().getMainView('main');
+        grid.setActiveTab(7);
+    },
     onBigBox: function () {
         var grid = Ext.getApplication().getMainView('main');
         grid.setActiveTab(6);

@@ -3,17 +3,18 @@ package com.bft.shumilkin.RegionsExtJS.Region;
 import com.bft.shumilkin.RegionsExtJS.City.City;
 import com.bft.shumilkin.RegionsExtJS.Country.Country;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table( name = "region")
 public class Region{
 
@@ -42,5 +43,4 @@ public class Region{
         cities.remove(city);
         city.setRegion(this);
     }
-
 }

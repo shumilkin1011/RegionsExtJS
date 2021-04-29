@@ -187,5 +187,35 @@ Ext.define('extJSApp.view.main.Main', {
             ],
 
         },
+        {
+            title: 'Дерево',
+            tabConfig: {
+                listeners: {
+                    click: 'treeClicked'
+                }
+            },
+            items: [
+                {
+                    xtype: 'treepanel',
+                    store: 'extJSApp.store.CountryTreeStore',
+                    columns: [{
+                        xtype: 'treecolumn', //this is so we know which column will show the tree
+                        text: 'Country',
+                        flex: 1,
+                        sortable: true,
+                        dataIndex: 'text'
+                    }],
+                    // features: [{
+                    //     ftype: 'rowbody',
+                    //     getAdditionalData: function(data, idx, record, orig) {
+                    //         return {
+                    //             rowBody: '<div style="padding: 1em">' + "test" + '</div>',
+                    //             rowBodyCls: "my-body-class"
+                    //         };
+                    //     }
+                    // }],
+                }
+            ]
+        }
     ]
 });
