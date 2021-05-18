@@ -216,6 +216,10 @@ Ext.define('extJSApp.view.main.Main', {
                     // }],
                 }
             ]
+        },
+        {
+            title: 'Конвертинг моделей',
+            xtype: 'dateconverter'
         }
     ]
 });

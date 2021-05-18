@@ -23,11 +23,13 @@ public class CountryService {
     }
 
     public List<Country> getAllCountries() {
+
         return countryRepo.findAll();
     }
 
     public String getAllCountriesTree() {
 
+     //   return countryRepo.findAll();
         List<Country> list = getAllCountries();
 
         JsonObject nodeMain = new JsonObject();
@@ -65,7 +67,7 @@ public class CountryService {
         }
         nodeMain.add("children", childrenMain);
         return nodeMain.toString();
-    };
+    }
 
     public void saveCountries(List<Country> countries) {
 
@@ -86,8 +88,7 @@ public class CountryService {
     }
 
     public List<Country> getAllCountriesSearch(String searchFor) {
-        List<Country> s =countryRepo.findByCountryNameContainingIgnoreCase(searchFor);
-        return s;
+        return countryRepo.findByCountryNameContainingIgnoreCase(searchFor);
 
     }
 

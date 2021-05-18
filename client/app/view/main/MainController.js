@@ -26,6 +26,9 @@ Ext.define('extJSApp.view.main.MainController', {
     treeClicked: function () {
         this.redirectTo('tree');
     },
+    convertingClicked: function () {
+        this.redirectTo('converting')
+    },
 
     onPageChanged: function (cmp, page) {
         this.redirectTo('regLst/'+page);

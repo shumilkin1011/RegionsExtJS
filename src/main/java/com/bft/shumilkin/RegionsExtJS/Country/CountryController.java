@@ -55,8 +55,11 @@ public class CountryController {
         return service.getAllCountries();
     }
 
-    @GetMapping(path = "/tree", produces = "text/plain;charset=UTF-8")
+    @GetMapping(path = "/tree", produces = "application/json;charset=UTF-8")
+    @ResponseBody
     public String getAllCountries() {
+
         return service.getAllCountriesTree();
+        //return service.getAllCountriesTree();
     }
 }
