@@ -6,6 +6,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -28,6 +31,6 @@ public class FemaleNameService {
     }
 
     public Page<FemaleName> getFemNameById(Long femNameId) {
-        return new PageImpl<FemaleName>(List.of(repo.findById(femNameId).orElseThrow()));
+        return new PageImpl<FemaleName>(Collections.singletonList(repo.findById(femNameId).orElse(null)));
     }
 }

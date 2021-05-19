@@ -2,6 +2,9 @@ Ext.define('extJSApp.view.main.MainController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.main',
 
+    soapClicked: function () {
+        this.redirectTo('soap')
+    },
     usrLstClicked : function () {
         this.redirectTo('regLst/1');
     },

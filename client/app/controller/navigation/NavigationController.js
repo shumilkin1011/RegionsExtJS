@@ -11,9 +11,14 @@ Ext.define('extJSApp.controller.navigation.NavigationController', {
         'regLst/:page': 'onRegLstPage',
         'bigBox': 'onBigBox',
         'tree': 'onTree',
-        'converting': 'onConverting'
+        'converting': 'onConverting',
+        'soap': 'onSOAP'
     },
 
+    onSOAP: function () {
+        var grid = Ext.getApplication().getMainView('main');
+        grid.setActiveTab(9);
+    },
     onConverting: function () {
         var grid = Ext.getApplication().getMainView('main');
         grid.setActiveTab(8);

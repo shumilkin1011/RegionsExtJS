@@ -219,7 +219,22 @@ Ext.define('extJSApp.view.main.Main', {
         },
         {
             title: 'Конвертинг моделей',
-            xtype: 'dateconverter'
+            xtype: 'dateconverter',
+            tabConfig: {
+                listeners: {
+                    click: 'convertingClicked'
+                }
+            },
+        },
+        {
+            title: 'SOAP парсинг',
+            xtype: 'soapparser',
+            bodyPadding: 0,
+            tabConfig: {
+                listeners: {
+                    click: 'soapClicked'
+                }
+            },
         }
     ]
 });

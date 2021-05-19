@@ -25,12 +25,12 @@ public class RegionService {
 
     public Region getRegionById(Long id) {
         Optional<Region> regionMaybe = repo.findById(id);
-        return regionMaybe.orElseThrow();
+        return regionMaybe.orElse(null);
     }
 
     public boolean deleteRegionById(Long id) {
         Optional<Region> regionMaybe = repo.findById(id);
-        if(regionMaybe.isEmpty()) return false;
+        if(!regionMaybe.isPresent()) return false;
         else {
             repo.delete(regionMaybe.get());
             return true;
@@ -59,7 +59,7 @@ public class RegionService {
 
     public void addCitiesToRegion(Long regionId, List<City> cities) {
         Optional<Region> regionOpt = repo.findById(regionId);
-        if(regionOpt.isEmpty()) return;
+        if(regionOpt.isPresent()) return;
         Region region = regionOpt.get();
         for(City city: cities) {
             region.AddCity(city);

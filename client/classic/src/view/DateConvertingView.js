@@ -1,11 +1,7 @@
 Ext.define('extJSApp.view.DateConvertingView', {
     extend: 'Ext.panel.Panel',
     xtype: 'dateconverter',
-    tabConfig: {
-        listeners: {
-            click: 'convertingClicked'
-        }
-    },
+
     items: [
         {
             reference: 'dateInp',

@@ -19,7 +19,8 @@ public class CountryService {
     }
 
     public Country findCountryById(Long id) {
-        return countryRepo.findById(id).orElseThrow();
+        Optional<Country> countryMaybe = countryRepo.findById(id);
+        return countryMaybe.orElse(null);
     }
 
     public List<Country> getAllCountries() {
@@ -80,7 +81,7 @@ public class CountryService {
 
     public boolean deleteCountryById(Long id) {
         Optional<Country> countryMaybe = countryRepo.findById(id);
-        if(countryMaybe.isEmpty()) return false;
+        if(!countryMaybe.isPresent()) return false;
         else {
             countryRepo.delete(countryMaybe.get());
             return true;
@@ -98,7 +99,7 @@ public class CountryService {
 
     public void addRegionsToCountry(Long countryId, List<Region> regions) {
         Optional<Country> countryOpt = countryRepo.findById(countryId);
-        if(countryOpt.isEmpty()) return;
+        if(countryOpt.isPresent()) return;
         Country country = countryOpt.get();
         for(Region reg: regions) {
             country.AddRegion(reg);

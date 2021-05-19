@@ -25,12 +25,12 @@ public class CityService {
 
     public City getCityById(Long id) {
         Optional<City> cityMaybe = repo.findById(id);
-        return cityMaybe.orElseThrow();
+        return cityMaybe.orElse(null);
     }
 
     public boolean deleteCityById(Long id) {
         Optional<City> cityMaybe = repo.findById(id);
-        if(cityMaybe.isEmpty()) return false;
+        if(!cityMaybe.isPresent()) return false;
         else {
             repo.delete(cityMaybe.get());
             return true;
